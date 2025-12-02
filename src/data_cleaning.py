@@ -47,10 +47,12 @@ def handle_missing_values(df):
     if 'qty' in df.columns:
         df['qty'] = pd.to_numeric(df['qty'], errors='coerce')
         df['qty'] = df['qty'].fillna(0)
+     df = df[df['price'] > 0]
+     df = df[df['qty'] > 0]
 
     return df
 
-#Co-pilot generated lines of code
+#Co-pilot assisted lines of code
 """
     Remove rows that are clearly invalid and return a filtered copy.
 

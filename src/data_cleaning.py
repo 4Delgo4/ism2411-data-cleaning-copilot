@@ -6,8 +6,7 @@ df = pd.read_csv("sales_data_raw.csv")
 print(df.head())
 print(df.columns)
 #cleaning the columns
-df.columns - df.columns.str.lower()
-df.columns = df.columns.str.replace(' ', '_')
+df.columns - df.columns.str.strip().str.lower().str.replace(' ', '_')
 #removing spaces in the text
 df['prodname'] = df['prodname'].str.strip()
 df['category'] = df['category'].str.strip()
@@ -19,7 +18,7 @@ df['qty'] = pd.to_numeric(df['qty'], errors='coerce')
 #checking for mising number
 print(df.isnull().sum())
 #Co-pilot assisted line of code
- """
+"""
     Fill common missing values in-place on a copy of the DataFrame and return it.
 
     What it is doing:
@@ -77,10 +76,10 @@ def remove_invalid_rows(df):
         df['price'] = pd.to_numeric(df['price'], errors='coerce')
         df = df[df['price'] > 0]
 
-    # Remove non-positive quantities
-    if 'qty' in df.columns:
-        df['qty'] = pd.to_numeric(df['qty'], errors='coerce')
-        df = df[df['qty'] > 0]
+    # Removing prices below Zero
+    if 'price' in df.columns:
+        df['price'] = pd.to_numeric(df['price'], errors='coerce')
+        df = df[df['price'] > 0]
 
     # Remove rows with blank product names (if the column exists)
     if 'prodname' in df.columns:

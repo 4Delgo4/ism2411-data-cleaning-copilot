@@ -37,10 +37,10 @@ def handle_missing_values(df):
     # Price: coerce to numeric and fill missing with median (or 0 if median is NaN)
     if 'price' in df.columns:
         df['price'] = pd.to_numeric(df['price'], errors='coerce')
-        median_price = df['price'].median(skipna=True)
-        if np.isnan(median_price):
-            median_price = 0
-        df['price'] = df['price'].fillna(median_price)
+        mean_price = df['price'].median(skipna=True)
+        if np.isnan(mean_price):
+            mean_price = 0
+        df['price'] = df['price'].fillna(mean_price).round(2)
 
     # Qty: coerce to numeric and fill missing with 0
     if 'qty' in df.columns:

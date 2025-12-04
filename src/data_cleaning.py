@@ -2,19 +2,19 @@ import pandas as pd
 import numpy as np
 
 #loading the file
-df = pd.read_csv("sales_data_raw.csv")
+df = pd.read_csv("data/raw/sales_data_raw.csv")
+load_data = df
 print(df.head())
 print(df.columns)
 #cleaning the columns
-df.columns - df.columns.str.strip().str.lower().str.replace(' ', '_')
-#removing spaces in the text
-df['prodname'] = df['prodname'].str.strip()
-df['category'] = df['category'].str.strip()
-df['category'] = df['category'].str.replace('""', '')
+def clean_column_names(df):
+    df = df.copy()
+    df.columns = df.columns.str.strip().str.lower().str.replace(' ', '_')
+    return df
+
 
 #fixing the numbers
-df['price'] = pd.to_numeric(df['price'], errors='coerce')
-df['qty'] = pd.to_numeric(df['qty'], errors='coerce')
+
 #checking for mising number
 print(df.isnull().sum())
 #Co-pilot assisted line of code
@@ -46,8 +46,8 @@ def handle_missing_values(df):
     if 'qty' in df.columns:
         df['qty'] = pd.to_numeric(df['qty'], errors='coerce')
         df['qty'] = df['qty'].fillna(0)
-     df = df[df['price'] > 0]
-     df = df[df['qty'] > 0]
+    df = df[df['price'] > 0]
+    df = df[df['qty'] > 0]
 
     return df
 
@@ -89,6 +89,9 @@ def remove_invalid_rows(df):
     # Reset index after filtering for cleanliness
     df = df.reset_index(drop=True)
     return df
+
+def load_data(path):
+    return pd.read_csv(path)
 
 
 

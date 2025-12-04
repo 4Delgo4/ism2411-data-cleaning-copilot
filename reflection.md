@@ -1,0 +1,6 @@
+#Reflection
+Cleaning this dataset helped me to understanf how important it is to make sure you have cleaned and prepared data is before using it. At first the file did not look like it had anything wrong with it but as i stated working with it I realized it had a lot of hidden issues. And these could produce inaccurate result if i do not handle using them correctly. Some of the problems where that the formatting was not consistent, there was unessary quotation marks, missing numbers, negative numbers, and names that were not standardized. Working through these problems showed me how crucial it is to approach data in a structured way.
+
+The first thing i fixed was standardizing the column names. The original datset used mixed capitilization and spaces which can easily cause errors when writting code especially refrencing columns. By converting them to all lowercase and removing the underscores. This makes it easier to understand so cleaning the text fields was neccessary, some product names and categories had extra speces or random quotation marks, and removing these inconsitencies prevents duplicate categories and will help to improve grouping accuracy later if needed.
+
+The prompts that co pilot genereated for me was 'def_remove_invalid_rows(df)' and 
